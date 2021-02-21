@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/home" component={Home}/>
+            <Route path="/home" component={Home}/>
             <Redirect from='/' to='/home'/>
         </Switch>
       </Router>
