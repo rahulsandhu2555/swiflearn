@@ -87,8 +87,6 @@ const VideosSection = styled.div`
 `;
 const VideoContainer = styled.div`
     transition: transform 1s, z-index 1s; 
-    // margin-left: -50px;
-    // margin-right: -50px;
     ${(props) => props.BoxId===-1 && `
         transform: matrix(0, 0, 0, 0, 0, 0);
     `}
@@ -122,9 +120,6 @@ const VideoContainer = styled.div`
         margin-right: -50px;
         transform: matrix(0.8, 0, 0, 0.8, 0, 0);
     `}
-    &:hover {
-        transform: matrix(0.9, 0, 0, 0.9, , 0);
-    }
 `;
 const Slides = styled.div`
     display:flex;
