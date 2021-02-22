@@ -1,40 +1,80 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import styled from "styled-components";
+import {useHistory} from "react-router";
 
-function LiveClasses(){
+function LiveClasses({classId}){
+    const history = useHistory();
+    const classes = [5, 6, 7, 8, 9,];
     return(
-        <Fragment>
-            <h1>Live Classes</h1>
-            <h6>Select a class</h6>
+        <ClassSelectionContainer>
+            <TitleSection>
+                <Title>Live Classes</Title>
+                <Description>Select a class</Description>
+            </TitleSection>
             <SelectClassBox>
-                <ClassNumber>
-                    5
-                </ClassNumber>
-                <ClassNumber>
-                    6
-                </ClassNumber>
-                <ClassNumber>
-                    7
-                </ClassNumber>
-                <ClassNumber>
-                    8
-                </ClassNumber>
-                <ClassNumber>
-                    9
-                </ClassNumber>
+                {
+                    classes.map((x)=>{
+                        return (
+                            x.toString() === classId ?
+                                <ClassNumberActive key={x} onClick={()=> history.push(`/home/${x}`)}>
+                                    {x}
+                                </ClassNumberActive>
+                                :
+                                <ClassNumber key={x} onClick={()=> history.push(`/home/${x}`)}>
+                                    {x}
+                                </ClassNumber>
+                        )
+                    })
+                }
             </SelectClassBox>
-        </Fragment>
+        </ClassSelectionContainer>
 
     )
 }
-const SelectClassBox = styled.div`
+const ClassSelectionContainer = styled.div`
     display:flex;
-    justify-content:center;
+    width:90vw;
+    margin: 2rem 0;
+    flex-direction:column;
+`;
+const TitleSection = styled.div`
+    display:flex;
+    align-items:flex-start;
+    flex-direction:column;
+    margin-left: 5vw;
+`;
+const Title = styled.div`
+    font-size: 2rem;
+    color: #A0A0A0;
+`;
+const Description = styled.div`
+    font-size: .75rem;
+    padding: 1rem 0;
+    color: #C0C0C0;
+`;
+const SelectClassBox = styled.div`
+    display: flex;
     border: 1px solid grey;
-    border-radius:8px;
-    margin:0 30% 0 30%;
+    margin: 2rem 0;
+    border-radius: 8px;
+    align-self: center;
+    align-items:center;
+    width: 70vw;
+    padding: 1.5rem 0;
+`;
+const ClassNumberActive = styled.div`
+    color: #A0A0A0;
+    cursor: pointer;
+    margin: 0 20px 15px 20px;
+    padding: 0 20px;
+    border-radius: 4px;
+    height: 4px;
+    box-shadow: 0 20px 0 0 #A0A0A0;
 `;
 const ClassNumber = styled.div`
-    padding:20px;
+    color: #A0A0A0;
+    cursor: pointer;
+    padding-left: 40px;
+    padding-right: 40px;
 `;
 export default LiveClasses
